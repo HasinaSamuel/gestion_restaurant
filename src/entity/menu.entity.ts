@@ -1,4 +1,4 @@
-import { Ingredient } from "src/ingredient/ingredient.entity";
+import { Ingredient } from "src/entity/ingredient.entity";
 import { Column, Entity,OneToMany,PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('menu')

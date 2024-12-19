@@ -2,9 +2,14 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { IngredientModule } from './ingredient/ingredient.module';
-import { MenuModule } from './menu/menu.module';
-import { ProduitModule } from './produit/produit.module';
+import { MenuController } from './controller/menu.controller';
+import { Composition } from './entity/composition.entity';
+import { Ingredient } from './entity/ingredient.entity';
+import { Menu } from './entity/menu.entity';
+import { MenuService } from './service/menu.service';
+import { CompositionService } from './service/composition.service';
+import { IngredientService } from './service/ingredient.service';
+
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -16,8 +21,8 @@ import { ProduitModule } from './produit/produit.module';
     database: "gestion_restaurant",
     autoLoadEntities: true,
     synchronize: true
-  }),ProduitModule, MenuModule, IngredientModule],
-  controllers: [AppController],
-  providers: [AppService],
+  }), TypeOrmModule.forFeature([Menu, Ingredient, Composition])],
+  controllers: [AppController, MenuController],
+  providers: [AppService, MenuService, IngredientService, CompositionService],
 })
 export class AppModule {}
